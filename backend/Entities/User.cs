@@ -22,6 +22,7 @@ namespace backend.Entities
         public ICollection<Notification> Notifications { get; set; } = new List<Notification>();
         public ICollection<RefreshToken> RefreshTokens { get; set; } = new List<RefreshToken>();
         public ICollection<TaskActivity> TaskActivities { get; set; } = new List<TaskActivity>();
+        public ICollection<PasswordResetToken> PasswordResetTokens { get; set; }
     }
 
     }

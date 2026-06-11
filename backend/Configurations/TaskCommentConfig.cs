@@ -4,15 +4,23 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace backend.Configurations
 {
-    public class TaskCommentConfig: IEntityTypeConfiguration<TaskItem>
+    public class TaskCommentConfig: IEntityTypeConfiguration<TaskComment>
     {
 
-        public void Configuration(EntityTypeBuilder<TaskComment> builder)
+        public void Configure(EntityTypeBuilder<TaskComment> builder)
         {
             builder.ToTable("TaskComments");
 
-            builder.HasKey(ts => ts.Id);
+            builder.HasKey(tc => tc.Id);
 
+            builder.HasOne(tc => tc.Task)
+                .WithMany(t => t.Comments)
+                .HasForeignKey(tc => tc.TaskId);
+
+            builder.HasOne(tc => tc.User)
+                .WithMany(t => t.Comments)
+                .HasForeignKey(tc => tc.UserId)
+                .OnDelete(DeleteBehavior.Restrict);
             
         }
     }

@@ -1,6 +1,6 @@
 ﻿namespace backend.Entities
 {
-    public class Notification
+    public class Notification: BaseEntity
     {
         public Guid UserId { get; set; }
         public User User { get; set; } = null!;

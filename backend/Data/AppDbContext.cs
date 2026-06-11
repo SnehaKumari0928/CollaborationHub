@@ -20,6 +20,7 @@ namespace backend.Data
         DbSet<ChatMessage> ChatMessages { get; set; }
         DbSet<Notification> Notifications { get; set; }
         DbSet<RefreshToken> RefreshTokens { get; set; }
+        DbSet<PasswordResetToken> PasswordResetTokens { get; set; }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);

@@ -10,5 +10,7 @@
         public ICollection<TeamMember> TeamMembers { get; set; } = new List<TeamMember>();
         public ICollection<Project> Projects { get; set; } = new List<Project>();
 
+        public ICollection<ChatRoom> ChatRooms { get; set; } 
+
     }
 }

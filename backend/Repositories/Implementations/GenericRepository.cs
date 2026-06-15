@@ -1,6 +1,7 @@
 ﻿using backend.Data;
 using backend.Entities;
 using backend.Repositories.Interfaces;
+using Microsoft.EntityFrameworkCore;
 
 namespace backend.Repositories.Implementations
 {
@@ -9,31 +10,34 @@ namespace backend.Repositories.Implementations
     {
 
         protected readonly AppDbContext _context;
+        protected readonly DbSet<T> _dbSet;
 
         public GenericRepository(AppDbContext context)
         {
             _context = context;
+            _dbSet = context.Set<T>();
         }
 
-        public async Task<T> AddAsync(T entity)
+        public async Task AddAsync(T entity)
         {
-            
+            await _dbSet.AddAsync(entity);
         }
-        public async Task<T> UpdateAsync(T entity)
+        public async Task UpdateAsync(T entity)
         {
+            _dbSet.Update(entity);
 
         }
         public async Task DeleteAsync(T entity)
         {
-
+            _dbSet.Remove(entity);
         }
-        public async Task GetByIdAsync(int id)
+        public async Task<T?> GetByIdAsync(int id)
         {
-
+            return await _dbSet.FindAsync(id);
         }
         public async Task SaveChangesAsync()
         {
-
+            await _context.SaveChangesAsync();
         }
     }
 }

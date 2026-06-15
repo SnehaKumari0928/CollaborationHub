@@ -1,11 +1,9 @@
-﻿namespace backend.DTOs
+﻿namespace backend.DTOs.Auth.Request
 {
-    public class RegisterDto
+    public class LoginRequestDto
     {
 
-        public string FullName { get; set; } = string.Empty;
         public string Email { get; set; } = string.Empty;
         public string Password { get; set; } = string.Empty;
-
     }
 }

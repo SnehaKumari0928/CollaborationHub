@@ -1,6 +1,22 @@
-﻿namespace backend.Repositories.Implementations
+﻿using backend.Data;
+using backend.Entities;
+using backend.Repositories.Interfaces;
+using Microsoft.EntityFrameworkCore;
+
+namespace backend.Repositories.Implementations
 {
-    public class UserRepository
+    public class UserRepository: GenericRepository<User>, IUserRepository
     {
+
+
+        public UserRepository(AppDbContext context) : base(context) { }
+        public async Task<User> GetByEmailAsync(string email)
+        {
+            return await _dbSet.FirstOrDefaultAsync(u => u.Email == email);
+        }
+        public async Task<bool> EmailExistsAsync(string email)
+        {
+           return await _dbSet.AnyAsync(u => u.Email == email);
+        }
     }
 }

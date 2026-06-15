@@ -4,10 +4,10 @@ namespace backend.Repositories.Interfaces
 {
     public interface IGenericRepository<T> where T : BaseEntity
     {
-        Task<T> AddAsync(T entity);
-        Task<T> UpdateAsync(T entity);
+        Task AddAsync(T entity);
+        Task UpdateAsync(T entity);
         Task DeleteAsync(T entity);
-        Task GetByIdAsync(int id);
+        Task<T?> GetByIdAsync(int id);
         Task SaveChangesAsync();
 
     }
